@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}SUPTECH Chatbot{% endblock %}</title>
+    <style>
+        :root {
+            --primary-red: #E30613;
+            --primary-blue: #0055A4;
+            --primary-white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --dark-gray: #2A2A2A;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            background: var(--primary-white);
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--primary-red);
+        }
+
+        button {
+            background-color: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            background-color: #c00511;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
+
+{% if messages %}
+    <div>
+        {% for message in messages %}
+            <p style="color: green;">{{ message }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+

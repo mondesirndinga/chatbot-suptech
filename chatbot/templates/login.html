@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="app-container">
+    <div class="chat-header">
+        <div class="chat-header-content">
+            <img src="{% static 'images/suptech-logo.png' %}" alt="Logo Suptech" class="logo-image">
+            <div class="header-text">
+                <h2>Connexion</h2>
+                <p>Accédez à votre espace</p>
+            </div>
+        </div>
+    </div>
+
+    <form method="post" class="p-6 bg-white">
+        {% csrf_token %}
+        <div class="mb-4">
+            <input type="text" name="identifier" placeholder="Nom d'utilisateur ou email" required class="input-field w-full">
+        </div>
+        <div class="mb-4">
+            <input type="password" name="password" placeholder="Mot de passe" required class="input-field w-full">
+        </div>
+        <button type="submit" class="bg-[#007bff] text-white px-6 py-2 rounded-md hover:bg-blue-700 transition duration-300 w-full">
+            Se connecter
+        </button>
+        <p class="text-center mt-4">Pas encore de compte ? <a href="{% url 'register' %}" class="text-[#007bff] font-bold">Créer un compte</a></p>
+    </form>
+</div>
+
+{% if messages %}
+    {% for message in messages %}
+        <div id="message" class="text-center text-green-600 font-semibold my-2">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <script>
+        setTimeout(() => {
+            document.getElementById('message')?.remove();
+        }, 5000);
+    </script>
+{% endif %}
+{% endblock %}
