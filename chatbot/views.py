@@ -139,7 +139,8 @@ def chat_api(request):
             })
 
         # Détection des demandes de débouchés et poursuites d'études combinées
-        if "poursuite" in message_clean or "que faire après" in message_clean:
+        if any(word in message_clean for word in ["poursuite", "que faire après", "débouchés", "débouché", "carrière", "métiers", "emplois", "avenir professionnel", "opportunité"]):
+
             if "licence" in message_clean:
                 return Response({
                     "status": "success",
